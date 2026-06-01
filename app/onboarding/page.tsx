@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from 'react';
-import { ChevronRight, ChevronLeft, Zap, Upload, Camera, CheckCircle2, Instagram, Facebook, MessageCircle, Building2, HelpCircle } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Zap, Upload, Camera, CheckCircle2, MessageCircle, Building2, HelpCircle, User, Users } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 type OnboardingData = {
@@ -158,7 +158,7 @@ export default function MultiStepOnboardingPage() {
             <div className="pt-8">
               <button 
                 onClick={handleNext}
-                className="w-full py-4 bg-vibe-pink hover:bg-[#d65b79] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-pink/20"
+                className="w-full py-4 bg-vibe-navy hover:bg-[#12142d] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-navy/20"
               >
                 ไปต่อ
               </button>
@@ -216,7 +216,7 @@ export default function MultiStepOnboardingPage() {
               <button 
                 onClick={handleNext}
                 disabled={!formData.firstName || !formData.lastName || !formData.username}
-                className="w-full py-4 bg-vibe-pink hover:bg-[#d65b79] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-pink/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-vibe-navy hover:bg-[#12142d] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-navy/20 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed disabled:shadow-none"
               >
                 ไปต่อ
               </button>
@@ -248,7 +248,7 @@ export default function MultiStepOnboardingPage() {
                   }`}
                 >
                   {gender.label}
-                  {formData.gender === gender.id && <CheckCircle2 className="w-5 h-5" />}
+                  {formData.gender === gender.id && <CheckCircle2 className="w-5 h-5 text-green-500" />}
                 </button>
               ))}
             </div>
@@ -257,7 +257,7 @@ export default function MultiStepOnboardingPage() {
               <button 
                 onClick={handleNext}
                 disabled={!formData.gender}
-                className="w-full py-4 bg-vibe-pink hover:bg-[#d65b79] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-pink/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-vibe-navy hover:bg-[#12142d] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-navy/20 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed disabled:shadow-none"
               >
                 ไปต่อ
               </button>
@@ -277,7 +277,7 @@ export default function MultiStepOnboardingPage() {
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-600">Instagram</label>
                 <div className="relative">
-                  <Instagram className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-pink-500" />
+                  <Camera className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-pink-500" />
                   <input 
                     type="text" 
                     value={formData.ig}
@@ -291,7 +291,7 @@ export default function MultiStepOnboardingPage() {
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-600">Facebook</label>
                 <div className="relative">
-                  <Facebook className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-600" />
+                  <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-600" />
                   <input 
                     type="text" 
                     value={formData.fb}
@@ -320,7 +320,7 @@ export default function MultiStepOnboardingPage() {
             <div className="pt-4">
               <button 
                 onClick={handleNext}
-                className="w-full py-4 bg-vibe-pink hover:bg-[#d65b79] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-pink/20"
+                className="w-full py-4 bg-vibe-navy hover:bg-[#12142d] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-navy/20"
               >
                 ไปต่อ (ข้ามได้ถ้ายังไม่ต้องการใส่)
               </button>
