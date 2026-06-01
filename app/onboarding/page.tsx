@@ -14,6 +14,7 @@ type OnboardingData = {
   fb: string;
   line: string;
   faculty: string;
+  school: string;
 };
 
 const FACULTIES = [
@@ -44,6 +45,7 @@ export default function MultiStepOnboardingPage() {
     fb: '',
     line: '',
     faculty: '',
+    school: '',
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -210,12 +212,23 @@ export default function MultiStepOnboardingPage() {
                   />
                 </div>
               </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-600">โรงเรียน (School)</label>
+                <input 
+                  type="text" 
+                  value={formData.school}
+                  onChange={(e) => handleChange('school', e.target.value)}
+                  className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-vibe-pink focus:ring-1 focus:ring-vibe-pink transition-all text-slate-800"
+                  placeholder="เช่น โรงเรียนวิทยาศาสตร์"
+                />
+              </div>
             </div>
 
             <div className="pt-4">
               <button 
                 onClick={handleNext}
-                disabled={!formData.firstName || !formData.lastName || !formData.username}
+                disabled={!formData.firstName || !formData.lastName || !formData.username || !formData.school}
                 className="w-full py-4 bg-vibe-navy hover:bg-[#12142d] text-white font-bold rounded-2xl transition-all shadow-md shadow-vibe-navy/20 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed disabled:shadow-none"
               >
                 ไปต่อ
