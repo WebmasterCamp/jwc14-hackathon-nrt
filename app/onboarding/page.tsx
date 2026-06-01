@@ -66,6 +66,7 @@ export default function MultiStepOnboardingPage() {
 
   const handleFinish = () => {
     // Navigate to main dashboard
+    sessionStorage.setItem('mockIsLoggedIn', 'true');
     router.push('/');
   };
 
@@ -104,8 +105,9 @@ export default function MultiStepOnboardingPage() {
           <div className="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-8 shadow-xl text-center relative overflow-hidden animate-in fade-in zoom-in-95 duration-500">
             <div className="absolute top-0 right-0 w-64 h-64 bg-vibe-pink/5 blur-[100px] rounded-full pointer-events-none" />
             
-            <div className="w-20 h-20 bg-vibe-pink rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-vibe-pink/30 mb-8 rotate-3">
-              <Zap className="w-10 h-10 text-white fill-current" />
+            <div className="w-24 h-24 mx-auto flex items-center justify-center mb-8 relative">
+              <div className="absolute inset-0 bg-white/50 blur-xl rounded-full" />
+              <img src="/logo.png" alt="Vibe Match Logo" className="w-full h-full object-contain relative z-10 drop-shadow-xl" />
             </div>
             
             <h1 className="text-3xl font-bold text-vibe-navy mb-4">ยินดีต้อนรับสู่ Vibe Match</h1>
