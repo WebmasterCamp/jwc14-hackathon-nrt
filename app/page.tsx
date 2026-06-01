@@ -239,10 +239,18 @@ export default function DashboardPage() {
               ))}
             </div>
 
-            {/* Grid of Teams */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
-              {filteredTeams.map(team => (
-                <div key={team.id} onClick={() => setSelectedTeam(team)} className="bg-white border border-slate-200 rounded-3xl p-4 flex flex-col gap-3 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 cursor-pointer">
+            {/* Filtered Teams Split into Two Zones */}
+            {(() => {
+              const highlyMatchedTeams = filteredTeams.filter(t => t.matchPercentage >= 75);
+              const generalTeams = filteredTeams.filter(t => t.matchPercentage < 75);
+              
+              const renderTeamCard = (team: Team) => (
+                <div key={team.id} onClick={() => setSelectedTeam(team)} className="bg-white border border-slate-200 rounded-3xl p-4 flex flex-col gap-3 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 cursor-pointer relative overflow-hidden group">
+                  {/* Match Percentage Badge (Small on card) */}
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur text-[#EC6D8C] font-black text-xs px-2 py-1 rounded-full shadow-sm z-10 border border-slate-100">
+                    Match {team.matchPercentage}%
+                  </div>
+
                   {/* Cover Image Placeholder */}
                   <div className={`w-full h-32 rounded-2xl ${team.coverColor} flex flex-col items-center justify-center text-slate-400 border border-black/5`}>
                      <ImageIcon className="w-8 h-8 mb-1 opacity-50" />
@@ -268,7 +276,7 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between pt-2">
                       <div className="flex -space-x-2">
                         {Array.from({ length: team.currentMembers }).map((_, i) => (
-                          <div key={i} className="w-6 h-6 rounded-full bg-slate-300 border-2 border-[#EAEAEA] flex items-center justify-center">
+                          <div key={i} className="w-6 h-6 rounded-full bg-slate-300 border-2 border-white flex items-center justify-center shadow-sm">
                              <User className="w-3 h-3 text-slate-500" />
                           </div>
                         ))}
@@ -277,8 +285,44 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+
+              return (
+                <div className="pb-20 space-y-12">
+                  {/* Zone 1: Highly Matched */}
+                  {highlyMatchedTeams.length > 0 && (
+                    <section>
+                      <h2 className="text-xl font-black text-slate-800 mb-6 flex items-center gap-2">
+                        <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                        ทีมที่น่าจะเข้ากับคุณ (Match 75%+)
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {highlyMatchedTeams.map(renderTeamCard)}
+                      </div>
+                    </section>
+                  )}
+
+                  {/* Zone 2: General Teams */}
+                  {generalTeams.length > 0 && (
+                    <section>
+                      <h2 className="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                        <Users className="w-5 h-5 text-slate-400" />
+                        ทีมอื่นๆ ทั่วไป
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {generalTeams.map(renderTeamCard)}
+                      </div>
+                    </section>
+                  )}
+                  
+                  {filteredTeams.length === 0 && (
+                    <div className="text-center py-20 text-slate-500 font-medium bg-white rounded-3xl border border-slate-200">
+                      ไม่พบทีมที่ตรงกับเงื่อนไข
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
           </div>
 
