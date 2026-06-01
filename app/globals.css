@@ -2,21 +2,19 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1c1f43;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  /* Vibe Match Custom Colors */
+  --color-vibe-pink: #EC6D8C;
+  --color-vibe-navy: #1C1F43;
+  --color-vibe-red: #ED1C24;
+  --color-vibe-pink-light: #fbe5eb;
+  --color-vibe-navy-light: #f1f2f6;
 }
 
 body {
